@@ -40,16 +40,16 @@
   {%- comment -%}
   Bootstrap Italia JS bundle.
   {%- endcomment -%}
-  <script src="{{ '/assets/vendor/bsi/bootstrap-italia.bundle.min.js' | relative_url }}"></script>
+  <script src="{{ '/assets/vendor/bsi/js/bootstrap-italia.bundle.min.js' | relative_url }}"></script>
 
   {%- comment -%}
   Dev Kit Italia JS — ES module bundle that registers all <it-*> custom elements.
-  Must be type="module" — web components use ES module imports internally.
-  {%- endcomment -%}
-  <script type="module" src="{{ '/assets/vendor/devkit/elements.js' | relative_url }}"></script>
+    Must be type="module" — web components use ES module imports internally.
+    {%- endcomment -%}
+    <script type="module" src="{{ '/assets/vendor/devkit/elements.js' | relative_url }}"></script>
 
-  {%- comment -%} Site-specific JS (optional) {%- endcomment -%}
-  <script type="module" src="{{ '/assets/js/site.js' | relative_url }}"></script>
+    {%- comment -%} Site-specific JS (optional) {%- endcomment -%}
+    <script type="module" src="{{ '/assets/js/site.js' | relative_url }}"></script>
 </body>
 
 </html>
