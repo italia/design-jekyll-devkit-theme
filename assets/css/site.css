@@ -1,0 +1,32 @@
+/*
+ * Site-specific CSS overrides.
+ * Bootstrap Italia + Dev Kit Italia provide all the base styles.
+ * Add only what's truly custom here.
+ */
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+/* Fix for Jekyll-generated content inside web components */
+main article>*:first-child {
+  margin-top: 0;
+}
+
+
+p {
+  max-width: 75ch;
+}
+
+it-accordion+h2,
+it-card+h2,
+it-accordion+*:is(h2, h3),
+it-card+*:is(h2, h3) {
+  margin-top: 2.5rem;
+}

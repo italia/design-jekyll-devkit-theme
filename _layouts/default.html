@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'it' }}">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if page.title %}{{ page.title }} — {% endif %}{{ site.title }}</title>
+
+  {%- comment -%}
+  Bootstrap Italia bundle CSS — vendored from @italia/bootstrap-italia/dist
+  {%- endcomment -%}
+  <link rel="stylesheet" href="{{ '/assets/vendor/bsi/css/bootstrap-italia.min.css' | relative_url }}">
+
+  {%- comment -%}
+  Dev Kit Italia CSS — vendored from @italia/dev-kit-italia/dist
+  fonts.css loads Titillium Web, Roboto Mono, Lora
+  styles.css is the Bootstrap Italia for web component styles
+  {%- endcomment -%}
+  <link rel="stylesheet" href="{{ '/assets/vendor/devkit/fonts.css' | relative_url }}">
+  <!-- <link rel="stylesheet" href="{{ '/assets/vendor/devkit/styles.css' | relative_url }}"> -->
+
+  {%- comment -%} Site-specific overrides {%- endcomment -%}
+  <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
+
+  {% seo %}
+</head>
+
+<body>
+
+  {% include header.html %}
+
+  <main class="container my-4">
+    {{ content }}
+  </main>
+
+  {% include footer.html %}
+
+  <it-back-to-top it-aria-label="Torna su" border></it-back-to-top>
+
+  {%- comment -%}
+  Bootstrap Italia JS bundle.
+  {%- endcomment -%}
+  <script src="{{ '/assets/vendor/bsi/bootstrap-italia.bundle.min.js' | relative_url }}"></script>
+
+  {%- comment -%}
+  Dev Kit Italia JS — ES module bundle that registers all <it-*> custom elements.
+  Must be type="module" — web components use ES module imports internally.
+  {%- endcomment -%}
+  <script type="module" src="{{ '/assets/vendor/devkit/elements.js' | relative_url }}"></script>
+
+  {%- comment -%} Site-specific JS (optional) {%- endcomment -%}
+  <script type="module" src="{{ '/assets/js/site.js' | relative_url }}"></script>
+</body>
+
+</html>

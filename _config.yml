@@ -1,0 +1,36 @@
+title: "Sito di esempio — Dev Kit Italia + Jekyll"
+description: "Tema Jekyll minimale con web component Dev Kit Italia"
+lang: it
+
+# Title on mobile
+short_title: "Dev Kit Italia + Jekyll"
+
+# Bootstrap Italia v3 version (alpha)
+bsi_version: "3.0.0-alpha.3"
+
+# Dev Kit Italia version (alpha)
+devkit_version: "1.0.0-alpha.5"
+
+# Bootstrap Italia icons
+bsi_sprites: "/assets/vendor/bsi/svg/sprites.svg"
+
+# Pretty permalink for blog posts
+defaults:
+  - scope:
+      type: "posts"
+    values:
+      permalink: /blog/:year/:month/:day/:title/
+
+# Build
+markdown: kramdown
+permalink: pretty
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - package.json
+  - package-lock.json
+  - vendor
+  - README.md
+  - scripts
