@@ -1,0 +1,14 @@
+{
+  "name": "jekyll-devkit-italia",
+  "private": true,
+  "description": "Jekyll theme skeleton using Dev Kit Italia web components",
+  "scripts": {
+    "vendor": "node scripts/vendor.mjs",
+    "setup": "npm install && npm run vendor",
+    "dev": "npm run vendor && bundle exec jekyll serve --livereload"
+  },
+  "dependencies": {
+    "@italia/dev-kit-italia": "1.0.0-alpha.6",
+    "bootstrap-italia": "3.0.0-alpha.3"
+  }
+}

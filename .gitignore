@@ -1,0 +1,10 @@
+_site/
+.jekyll-cache/
+.jekyll-metadata
+node_modules/
+.sass-cache/
+Gemfile.lock
+
+# Uncomment the next line if you DON'T want to commit vendored assets
+# (requires npm run vendor before each build)
+assets/vendor/
