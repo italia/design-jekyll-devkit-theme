@@ -4,6 +4,28 @@
  * Add only what's truly custom here.
  */
 
+/* ── Theming PoC — header & footer ──────────────────────────────────────────–── */
+
+.it-header-wrapper,
+.it-header-slim-wrapper,
+.it-header-center-wrapper,
+.it-header-navbar-wrapper {
+  --bsi-header-slim-background: #1a4332;
+  --bsi-header-center-background: #2d6a4f;
+  --bsi-header-nav-background: #2d6a4f;
+}
+
+.navbar {
+  --bsi-navbar-background: #2d6a4f;
+}
+
+.it-footer {
+  --bsi-footer-top-background: #2d6a4f;
+  --bsi-footer-bottom-background: #1a4332;
+}
+
+/* ── Layout ─────────────────────────────────────────────────────────────────── */
+
 body {
   display: flex;
   flex-direction: column;
@@ -14,19 +36,17 @@ main {
   flex: 1;
 }
 
-/* Fix for Jekyll-generated content inside web components */
-main article>*:first-child {
+main article > *:first-child {
   margin-top: 0;
 }
 
+/* ── Typography & spacing ──────────────────────────────────────────────────── */
 
 p {
   max-width: 75ch;
 }
 
-it-accordion+h2,
-it-card+h2,
-it-accordion+*:is(h2, h3),
-it-card+*:is(h2, h3) {
+it-accordion + *:is(h2, h3),
+it-card + *:is(h2, h3) {
   margin-top: 2.5rem;
 }
