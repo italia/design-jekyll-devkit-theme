@@ -46,6 +46,8 @@ p {
   max-width: 75ch;
 }
 
+it-video + *:is(h2, h3),
+it-breadcrumbs + *:is(h2, h3),
 it-accordion + *:is(h2, h3),
 it-card + *:is(h2, h3) {
   margin-top: 2.5rem;
