@@ -48,7 +48,7 @@ jobs:
           node-version: '22.x'
         uses: actions/setup-node@v6
       - name: Vendoring BSI and Dev Kit
-        run: node scripts/vendor.mjs
+        run: npm run setup
       - name: Build with Jekyll
         # Outputs to the './_site' directory by default
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
