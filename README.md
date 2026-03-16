@@ -1,10 +1,9 @@
-# Jekyll + Dev Kit Italia — Skeleton
+# Jekyll + Dev Kit Italia — Skeleton Theme
 
 > ⚠️ **Proof of concept** — Dev Kit Italia e Bootstrap Italia v3 sono in alpha.
 > Non usare in produzione senza verificare lo stato upstream. Componenti e API possono cambiare prima della release stabile.
 
-Tema Jekyll minimale che usa i **web component di Dev Kit Italia** (`<it-*>`)
-con gli stili di **Bootstrap Italia**.
+Tema Jekyll minimale che usa i **web component di Dev Kit Italia** (`<it-*>`) con gli stili di **Bootstrap Italia**.
 
 ## Come funziona
 
