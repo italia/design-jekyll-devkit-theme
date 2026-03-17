@@ -27,7 +27,7 @@
             </div>
             <div class="it-header-slim-right-zone">
               <div class="it-access-top-wrapper">
-                <a class="btn btn-primary btn-sm" href="#">Accedi</a>
+                <a class="btn btn-primary btn-xs" href="#">Accedi</a>
               </div>
             </div>
           </div>
@@ -78,11 +78,11 @@
       <div class="container-xxl">
         <div class="row">
           <div class="col-12">
-            <nav class="navbar navbar-expand-lg has-megamenu" aria-label="Navigazione principale">
+            <nav class="navbar navbar-expand-lg" aria-label="Navigazione principale">
               <button class="custom-navbar-toggler" type="button" aria-controls="mainNav"
                 aria-label="Mostra/Nascondi la navigazione" data-bs-toggle="navbarcollapsible"
                 data-bs-target="#mainNav">
-                <svg class="icon bg-override">
+                <svg class="icon">
                   <use href="{{ sprites }}#it-burger"></use>
                 </svg>
               </button>
@@ -101,7 +101,7 @@
                     {% for p in sorted_pages %}
                     <li class="nav-item{% if page.url == p.url %} active{% endif %}">
                       <a class="nav-link{% if page.url == p.url %} active{% endif %}" href="{{ p.url | relative_url }}"
-                        {% if page.url==p.url %}aria-current="page" {% endif %}>
+                        {% if page.url == p.url %}aria-current="page"{% endif %}>
                         <span>{{ p.nav_title | default: p.title }}</span>
                       </a>
                     </li>
