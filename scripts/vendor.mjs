@@ -3,6 +3,7 @@
  *
  * Copies Bootstrap Italia and Dev Kit Italia built assets from
  * node_modules into Jekyll-accessible directories.
+ * Syncs bsi_version and devkit_version into _config.yml.
  * Run after `npm install`.
  *
  * Why vendor instead of CDN?
@@ -20,12 +21,18 @@
  *   assets/vendor/devkit/elements.js  (+ chunks, fonts, assets)
  */
 
-import { cpSync, mkdirSync, existsSync } from "node:fs";
+import { cpSync, mkdirSync, existsSync, readFileSync, writeFileSync } from "node:fs";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, "..");
+
+// ── Versions (from package.json) ──────────────────────────────────────────────
+
+const pkg = JSON.parse(readFileSync(resolve(root, "package.json"), "utf-8"));
+const bsiVersion = (pkg.dependencies?.["bootstrap-italia"] ?? "unknown").replace(/^\^|~/, "");
+const devkitVersion = (pkg.dependencies?.["@italia/dev-kit-italia"] ?? "unknown").replace(/^\^|~/, "");
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -33,9 +40,10 @@ function copyFile(src, dest, label) {
   if (existsSync(src)) {
     mkdirSync(dirname(dest), { recursive: true });
     cpSync(src, dest);
-    console.log(`✅ ${label}`);
+    console.log(`  ✅ ${label}`);
   } else {
-    console.warn(`⚠️  ${label} — not found`);
+    console.error(`  ❌ ${label} — not found: ${src}`);
+    process.exit(1);
   }
 }
 
@@ -43,17 +51,27 @@ function copyDir(src, dest, label, filter) {
   if (existsSync(src)) {
     mkdirSync(dest, { recursive: true });
     cpSync(src, dest, { recursive: true, filter });
-    console.log(`✅ ${label}`);
+    console.log(`  ✅ ${label}`);
   } else {
-    console.warn(`⚠️  ${label} — not found`);
+    console.error(`  ❌ ${label} — not found: ${src}`);
+    process.exit(1);
   }
+}
+
+function syncConfigVersions() {
+  const configPath = resolve(root, "_config.yml");
+  let config = readFileSync(configPath, "utf-8");
+  config = config.replace(/^bsi_version:.*$/m, `bsi_version: "${bsiVersion}"`);
+  config = config.replace(/^devkit_version:.*$/m, `devkit_version: "${devkitVersion}"`);
+  writeFileSync(configPath, config, "utf-8");
+  console.log(`  ✅ _config.yml aggiornato`);
 }
 
 // ── Bootstrap Italia ──────────────────────────────────────────────────────────
 
 const bsi = resolve(root, "node_modules/bootstrap-italia/dist");
 
-console.log("\n── Bootstrap Italia ──");
+console.log(`\n── Bootstrap Italia ${bsiVersion} ──`);
 copyFile(
   resolve(bsi, "css/bootstrap-italia.min.css"),
   resolve(root, "assets/vendor/bsi/css/bootstrap-italia.min.css"),
@@ -74,12 +92,7 @@ copyFile(
 
 const devkit = resolve(root, "node_modules/@italia/dev-kit-italia/dist");
 
-console.log("\n── Dev Kit Italia ──");
-if (!existsSync(devkit)) {
-  console.error("❌ @italia/dev-kit-italia not found. Run: npm install");
-  process.exit(1);
-}
-
+console.log(`\n── Dev Kit Italia ${devkitVersion} ──`);
 copyDir(
   devkit,
   resolve(root, "assets/vendor/devkit"),
@@ -87,6 +100,12 @@ copyDir(
   (src) => !src.endsWith(".map")
 );
 
+// ── Sync _config.yml ──────────────────────────────────────────────────────────
+
+console.log(`\n── _config.yml ──`);
+syncConfigVersions();
+
 // ── Done ──────────────────────────────────────────────────────────────────────
 
-console.log("\n🎉 Assets vendored into assets/vendor/{bsi,devkit}/");
+console.log(`\n🎉 Assets vendored into assets/vendor/{bsi,devkit}/`);
+console.log(`   Bootstrap Italia ${bsiVersion} · Dev Kit Italia ${devkitVersion}\n`);

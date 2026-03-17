@@ -3,9 +3,9 @@ short_title: "Dev Kit Italia + Jekyll"
 description: "Tema Jekyll minimale con web component Dev Kit Italia"
 lang: it
 
-# BSI and DKI versions (alpha)
-bsi_version: "3.0.0-alpha.5"
-devkit_version: "1.0.0-alpha.6"
+# BSI and DKI versions — auto-updated by scripts/vendor.mjs, do not edit manually
+bsi_version: ""
+devkit_version: ""
 
 # BSI icons
 bsi_sprites: "/assets/vendor/bsi/svg/sprites.svg"
