@@ -47,12 +47,14 @@ p {
   max-width: 75ch;
 }
 
-it-video + *:is(h2, h3),
-it-breadcrumbs + *:is(h2, h3),
-it-accordion + *:is(h2, h3),
-it-card + *:is(h2, h3) {
-  margin-top: 2.5rem;
+it-video,
+it-breadcrumbs,
+it-accordion {
+  display: block;
+  margin-bottom: 2.5rem;
 }
+
+
 
 /* Restore BSI 85% for inline code — overridden to 1em by styles.css Dev Kit. 
    Is it a Dev Kit style issue? */
