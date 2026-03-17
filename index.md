@@ -57,15 +57,17 @@ senza bisogno di JavaScript custom:
 I componenti che non hanno un web component `<it-*>` si usano
 con il markup HTML classico di Bootstrap Italia:
 
-<div class="alert alert-info mb-5" role="alert">
-  <it-icon name="it-info-circle" class="alert-icon"></it-icon>
+<div class="alert alert-warning mb-5" role="alert">
+  <it-icon name="it-warning-circle" class="alert-icon"></it-icon>
   <strong>Nota:</strong> Dev Kit Italia è in fase alpha.
   Non tutti i componenti BSI hanno un equivalente web component.
 </div>
 
 ## Componenti misti
 
-Puoi mischiare web component e HTML classico nella stessa pagina:
+Puoi mischiare web component e HTML classico nella stessa pagina. 
+
+### Card semplici
 
 <div class="row mt-4">
   <div class="col-12 col-md-6 mb-3 mb-md-4">
@@ -88,3 +90,135 @@ Puoi mischiare web component e HTML classico nella stessa pagina:
     </it-card>
   </div>
 </div>
+
+### Card con immagini
+
+<div class="row mt-4">
+  <div class="col-12 col-md-6 mb-3 mb-md-4">
+    {%- comment -%} Card con immagine BSI 3.x — markup HTML classico {%- endcomment -%}
+    <article class="it-card it-card-image rounded shadow-sm border">
+      <h3 class="it-card-title">
+        <a href="#">Card BSI con immagine</a>
+      </h3>
+      <div class="it-card-image-wrapper">
+        <div class="ratio ratio-16x9">
+          <figure class="figure img-full">
+            <img src="https://placeholderimage.eu/api/city/800/600" alt="Città">
+          </figure>
+        </div>
+      </div>
+      <div class="it-card-body">
+        <p class="it-card-text">Markup HTML classico Bootstrap Italia 3.x con immagine in rapporto 16x9.</p>
+      </div>
+      <footer class="it-card-footer">
+        <time class="it-card-date" datetime="2026-03-17">17 marzo 2026</time>
+      </footer>
+    </article>
+  </div>
+  <div class="col-12 col-md-6 mb-3 mb-md-4">
+    {%- comment -%} Card con immagine Dev Kit — web component {%- endcomment -%}
+    <it-card>
+      <a slot="title" href="#">Card web component con immagine</a>
+      <figure slot="image" class="figure img-full">
+        <img src="https://placeholderimage.eu/api/nature/800/600" alt="Natura" />
+      </figure>
+      <span slot="text">Web component &lt;it-card&gt; con immagine via slot dedicato.</span>
+      <time slot="footer" class="it-card-date" datetime="2026-03-17">17 marzo 2026</time>
+    </it-card>
+  </div>
+</div>
+
+### Card miste - layout 3 colonne come lista
+
+<ul class="it-card-list row" aria-label="Esempi di card miste BSI e web component:">
+
+  {%- comment -%} 1 — BSI con immagine {%- endcomment -%}
+  <li class="col-12 col-md-6 col-lg-4 mb-3 mb-md-4">
+    <article class="it-card it-card-image it-card-height-full rounded shadow-sm border">
+      <h3 class="it-card-title">
+        <a href="#">Card BSI con immagine</a>
+      </h3>
+      <div class="it-card-image-wrapper">
+        <div class="ratio ratio-16x9">
+          <figure class="figure img-full">
+            <img src="https://placeholderimage.eu/api/city/800/600" alt="Città">
+          </figure>
+        </div>
+      </div>
+      <div class="it-card-body">
+        <p class="it-card-text">Markup HTML classico Bootstrap Italia 3.x con immagine e altezza uniforme.</p>
+      </div>
+      <footer class="it-card-footer">
+        <time class="it-card-date" datetime="2026-03-17">17 marzo 2026</time>
+      </footer>
+    </article>
+  </li>
+
+  {%- comment -%} 2 — DevKit senza immagine {%- endcomment -%}
+  <li class="col-12 col-md-6 col-lg-4 mb-3 mb-md-4">
+    <it-card full-height="">
+      <a slot="title" href="#">Card web component</a>
+      <span slot="text">Web component <code>&lt;it-card&gt;</code> senza immagine, con <code>full-height</code> per allineamento riga.</span>
+      <time slot="footer" class="it-card-date" datetime="2026-03-17">17 marzo 2026</time>
+    </it-card>
+  </li>
+
+  {%- comment -%} 3 — BSI senza immagine {%- endcomment -%}
+  <li class="col-12 col-md-6 col-lg-4 mb-3 mb-md-4">
+    <article class="it-card it-card-height-full rounded shadow-sm border">
+      <h3 class="it-card-title">
+        <a href="#">Card BSI senza immagine</a>
+      </h3>
+      <div class="it-card-body">
+        <p class="it-card-text">Markup HTML classico senza immagine. La classe <code>it-card-height-full</code> allinea le card alla stessa altezza.</p>
+      </div>
+      <footer class="it-card-footer">
+        <time class="it-card-date" datetime="2026-03-17">17 marzo 2026</time>
+      </footer>
+    </article>
+  </li>
+
+  {%- comment -%} 4 — DevKit con immagine {%- endcomment -%}
+  <li class="col-12 col-md-6 col-lg-4 mb-3 mb-md-4">
+    <it-card full-height="">
+      <a slot="title" href="#">Card web component con immagine</a>
+      <figure slot="image" class="figure img-full">
+        <img src="https://placeholderimage.eu/api/nature/800/600" alt="Natura" />
+      </figure>
+      <span slot="text">Web component <code>&lt;it-card&gt;</code> con immagine via <code>slot="image"</code>.</span>
+      <time slot="footer" class="it-card-date" datetime="2026-03-17">17 marzo 2026</time>
+    </it-card>
+  </li>
+
+  {%- comment -%} 5 — BSI con immagine {%- endcomment -%}
+  <li class="col-12 col-md-6 col-lg-4 mb-3 mb-md-4">
+    <article class="it-card it-card-image it-card-height-full rounded shadow-sm border">
+      <h3 class="it-card-title">
+        <a href="#">Card BSI — altra immagine</a>
+      </h3>
+      <div class="it-card-image-wrapper">
+        <div class="ratio ratio-16x9">
+          <figure class="figure img-full">
+            <img src="https://placeholderimage.eu/api/architecture/800/600" alt="Architettura">
+          </figure>
+        </div>
+      </div>
+      <div class="it-card-body">
+        <p class="it-card-text">Seconda card BSI con immagine per completare la griglia a 3 colonne.</p>
+      </div>
+      <footer class="it-card-footer">
+        <time class="it-card-date" datetime="2026-03-17">17 marzo 2026</time>
+      </footer>
+    </article>
+  </li>
+
+  {%- comment -%} 6 — DevKit senza immagine {%- endcomment -%}
+  <li class="col-12 col-md-6 col-lg-4 mb-3 mb-md-4">
+    <it-card full-height="">
+      <a slot="title" href="#">Card web component — variante</a>
+      <span slot="text">Seconda card <code>&lt;it-card&gt;</code> senza immagine. Mescolare BSI e web component nella stessa lista funziona senza configurazioni aggiuntive.</span>
+      <time slot="footer" class="it-card-date" datetime="2026-03-17">17 marzo 2026</time>
+    </it-card>
+  </li>
+
+</ul>

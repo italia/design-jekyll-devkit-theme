@@ -17,7 +17,7 @@
   styles.css is the Bootstrap Italia for web component styles
   {%- endcomment -%}
   <link rel="stylesheet" href="{{ '/assets/vendor/devkit/fonts.css' | relative_url }}">
-  <!-- <link rel="stylesheet" href="{{ '/assets/vendor/devkit/styles.css' | relative_url }}"> -->
+  <link rel="stylesheet" href="{{ '/assets/vendor/devkit/styles.css' | relative_url }}">
 
   {%- comment -%} Site-specific overrides {%- endcomment -%}
   <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
@@ -29,13 +29,13 @@
 
   {% include header.html %}
 
-  <main class="container my-4">
+  <main class="container-xxl my-4">
     {{ content }}
   </main>
 
   {% include footer.html %}
 
-  <it-back-to-top it-aria-label="Torna su" border></it-back-to-top>
+  <it-back-to-top it-aria-label="Torna su" border=""></it-back-to-top>
 
   {%- comment -%}
   Bootstrap Italia JS bundle.

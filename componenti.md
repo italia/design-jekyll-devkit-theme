@@ -46,7 +46,7 @@ Esempi di web component Dev Kit Italia usati in una pagina Jekyll.
 ## Accordion — modalità esclusiva
 
 <it-accordion mode="single">
-  <it-accordion-item default-open>
+  <it-accordion-item default-open="">
     <span slot="heading">Sezione uno</span>
     <div slot="content">
       Contenuto della prima sezione. In modalità <code>single</code>,
@@ -63,8 +63,8 @@ Esempi di web component Dev Kit Italia usati in una pagina Jekyll.
 
 ## Accordion — stato attivo
 
-<it-accordion background-active>
-  <it-accordion-item default-open>
+<it-accordion background-active="">
+  <it-accordion-item default-open="">
     <span slot="heading">Con sfondo attivo</span>
     <div slot="content">
       L'attributo <code>background-active</code> colora l'header quando aperto.

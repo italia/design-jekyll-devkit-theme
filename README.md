@@ -71,7 +71,7 @@ In qualsiasi file Markdown o HTML di Jekyll:
 
 ```html
 <it-accordion>
-  <it-accordion-item default-open>
+  <it-accordion-item default-open="">
     <span slot="heading">Titolo sezione</span>
     <div slot="content">
       Contenuto con **Markdown** che Jekyll ha già processato.
