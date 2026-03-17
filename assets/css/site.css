@@ -52,3 +52,15 @@ it-accordion + *:is(h2, h3),
 it-card + *:is(h2, h3) {
   margin-top: 2.5rem;
 }
+
+/* ––– Temporary –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+
+/* Issue BSI 3: https://github.com/italia/bootstrap-italia/issues/1726 */
+ul.it-card-list li .it-card-text {
+  font-size: 1rem !important;
+}
+
+ul.it-card-list li it-card {
+  font-size: 1rem;
+}
