@@ -6,22 +6,41 @@
 
 /* ── Theming PoC — header & footer ──────────────────────────────────────────–── */
 
+/* Define custom color palette with verified WCAG AA contrast ratios on white */
+:root {
+  --custom-orange-primary: #b85a0c;
+  --custom-orange-muted: #944a0a;
+  --custom-orange-deep: #6d2e0a;
+}
+
+/* SLIM HEADER - Keep custom darker shade */
+.it-header-slim-wrapper {
+  --bsi-header-slim-background: var(--custom-orange-deep);
+  --bsi-header-slim-text-color: #ffffff;
+}
+
+/* HEADER CENTER & NAV - Custom primary */
 .it-header-wrapper,
-.it-header-slim-wrapper,
 .it-header-center-wrapper,
 .it-header-navbar-wrapper {
-  --bsi-header-slim-background: #1a4332;
-  --bsi-header-center-background: #2d6a4f;
-  --bsi-header-nav-background: #2d6a4f;
+  --bsi-header-center-background: var(--custom-orange-primary);
+  --bsi-header-nav-background: var(--custom-orange-primary);
+  --bsi-header-center-text-color: #ffffff;
+  --bsi-header-nav-text-color: #ffffff;
+  --bsi-header-brand-color: #ffffff;
+  --bsi-header-brand-icon-color: #ffffff;
+  --bsi-header-search-icon-color: var(--custom-orange-primary);
 }
 
 .navbar {
-  --bsi-navbar-background: #2d6a4f;
+  --bsi-navbar-background: var(--custom-orange-primary);
 }
 
+/* FOOTER - Custom gradient (muted + deep) */
 .it-footer {
-  --bsi-footer-top-background: #2d6a4f;
-  --bsi-footer-bottom-background: #1a4332;
+  --bsi-footer-top-background: var(--custom-orange-muted);
+  --bsi-footer-bottom-background: var(--custom-orange-deep);
+  --bsi-footer-brand-icon-color: #ffffff;
 }
 
 /* ── Layout ─────────────────────────────────────────────────────────────────── */
@@ -36,7 +55,7 @@ main {
   flex: 1;
 }
 
-main article > *:first-child {
+main article>*:first-child {
   margin-top: 0;
 }
 
@@ -58,7 +77,7 @@ it-accordion {
 
 /* Restore BSI 85% for inline code — overridden to 1em by styles.css Dev Kit. 
    Is it a Dev Kit style issue? */
-:not(pre) > code {
+:not(pre)>code {
   font-size: 0.875em;
 }
 
