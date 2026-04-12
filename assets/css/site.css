@@ -68,7 +68,9 @@ p {
 
 it-video,
 it-breadcrumbs,
-it-accordion {
+it-accordion,
+it-hero,
+it-input {
   display: block;
   margin-bottom: 2.5rem;
 }
@@ -79,6 +81,15 @@ h2 {
 
 h3 {
   margin-top: 1rem;
+}
+
+h4 {
+  margin-top: 0.875rem;
+}
+
+hr {
+  margin-top: 4.5rem!important;
+  border-top: dotted 4px #666!important;
 }
 
 

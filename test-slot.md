@@ -5,30 +5,60 @@ nav_order: 99
 ---
 
 Pagina di test per verificare il comportamento dell'accessibility tree
-quando gli slot dei web component Dev Kit Italia non sono popolati.
+e dei tool di verifica automatica sui web component Dev Kit Italia.
 
-## Card
+Ogni sezione include un **🔴 errore intenzionale** su un web component Dev Kit
+e lo **stesso errore** su HTML classico come controllo.
+Se il tool segnala entrambi, sta verificando dentro il shadow DOM.
 
-### Con slot (controllo)
+---
+
+## A. Slot vuoti — elementi semantici fantasma
+
+### Card
+
+#### Card completa (🟢 controllo ok)
 
 <it-card>
-  <a slot="title" href="#">Titolo presente</a>
+  <a slot="title" href="#">Titolo card presente</a>
   <span slot="text">Testo card di esempio.</span>
 </it-card>
 
-### Senza slot title
+#### Card senza slot title (🔴 errore intenzionale)
 
 <it-card>
   <span slot="text">Testo presente ma nessun titolo.</span>
 </it-card>
 
-### Completamente vuota
+#### Card completamente vuota (🔴 errore intenzionale)
 
 <it-card></it-card>
 
-## Accordion
+#### Card senza slot title con immagine (🔴 errore intenzionale)
 
-### Con slot (controllo)
+<it-card>
+  <figure slot="image" class="figure img-full">
+    <img src="https://placehold.co/400x300" alt="Placeholder">
+  </figure>
+  <span slot="text">Card con immagine ma senza titolo.</span>
+</it-card>
+
+#### Card con slot title vuoto (🔴 errore intenzionale)
+
+<it-card>
+  <span slot="title"></span>
+  <span slot="text">Testo presente ma title vuoto.</span>
+</it-card>
+
+#### Card full-height senza title (🔴 errore intenzionale)
+
+<it-card full-height="">
+  <span slot="text">Full height senza titolo.</span>
+</it-card>
+
+### Accordion
+
+#### Accordion completo (🟢 controllo ok)
 
 <it-accordion mode="multiple">
   <it-accordion-item default-open="">
@@ -37,7 +67,7 @@ quando gli slot dei web component Dev Kit Italia non sono popolati.
   </it-accordion-item>
 </it-accordion>
 
-### Senza slot heading
+#### Accordion senza slot heading (🔴 errore intenzionale)
 
 <it-accordion mode="multiple">
   <it-accordion-item>
@@ -45,37 +75,37 @@ quando gli slot dei web component Dev Kit Italia non sono popolati.
   </it-accordion-item>
 </it-accordion>
 
-### Item completamente vuoto
+#### Accordion item vuoto (🔴 errore intenzionale)
 
 <it-accordion mode="multiple">
   <it-accordion-item></it-accordion-item>
 </it-accordion>
 
-## Input
+### Input
 
-### Con slot label (controllo)
+#### Input con label (🟢 controllo ok)
 
 <it-input id="test-input-ok" type="text" name="testo">
   <span slot="label">Campo di testo</span>
 </it-input>
 
-### Senza slot label
+#### Input senza label (🔴 errore intenzionale)
 
 <it-input id="test-input-nolabel" type="text" name="testo"></it-input>
 
-## Button
+### Button
 
-### Con testo (controllo)
+#### Button con testo (🟢 controllo ok)
 
 <it-button variant="primary" type="button">Testo del pulsante</it-button>
 
-### Senza testo
+#### Button senza testo (🔴 errore intenzionale)
 
 <it-button variant="primary" type="button"></it-button>
 
-## Callout
+### Callout
 
-### Con slot title (controllo)
+#### Callout completo (🟢 controllo ok)
 
 <it-callout variant="" heading-level="h2">
   <it-icon slot="icon" size="md" name="it-info-circle"></it-icon>
@@ -83,87 +113,85 @@ quando gli slot dei web component Dev Kit Italia non sono popolati.
   <p>Testo del callout di esempio.</p>
 </it-callout>
 
-### Senza slot title
+#### Callout senza slot title (🔴 errore intenzionale)
 
 <it-callout variant="" heading-level="h2">
   <it-icon slot="icon" size="md" name="it-info-circle"></it-icon>
   <p>Testo del callout senza titolo.</p>
 </it-callout>
 
-## Modal
+### Modal
 
-### Con slot header (controllo)
+#### Modal completa (🟢 controllo ok)
 
 <it-modal
   close-label="Chiudi finestra modale"
   modal-title="Titolo modale"
   modal-description="Descrizione della modale"
 >
-  <it-button variant="primary" slot="trigger">Apri modale</it-button>
+  <it-button variant="primary" slot="trigger">Apri modale completa</it-button>
   <span slot="header">Titolo modale</span>
   <span slot="description">Descrizione della modale</span>
   <p slot="content">Contenuto della modale.</p>
   <it-button slot="footer" variant="primary">Conferma</it-button>
 </it-modal>
 
-### Senza slot header
+#### Modal senza slot header (🔴 errore intenzionale)
 
-<it-modal
-  close-label="Chiudi finestra modale"
->
-  <it-button variant="primary" slot="trigger">Apri modale vuota</it-button>
+<it-modal close-label="Chiudi finestra modale">
+  <it-button variant="primary" slot="trigger">Apri modale senza header</it-button>
   <p slot="content">Contenuto senza titolo.</p>
 </it-modal>
 
-## Dropdown
+### Dropdown
 
-### Con contenuto (controllo)
+#### Dropdown completo (🟢 controllo ok)
 
 <it-dropdown label="Apri dropdown" variant="primary">
   <it-dropdown-item href="#">Azione 1</it-dropdown-item>
   <it-dropdown-item href="#">Azione 2</it-dropdown-item>
 </it-dropdown>
 
-### Senza label
+#### Dropdown senza label (🔴 errore intenzionale)
 
 <it-dropdown variant="primary">
   <it-dropdown-item href="#">Azione 1</it-dropdown-item>
 </it-dropdown>
 
-## Select
+### Select
 
-### Con slot label (controllo)
+#### Select con label (🟢 controllo ok)
 
-<it-select name="test-select" placeholder="Seleziona un'opzione">
+<it-select name="test-select-ok" placeholder="Seleziona un'opzione">
   <span slot="label">Etichetta</span>
   <option value="1">Opzione 1</option>
   <option value="2">Opzione 2</option>
 </it-select>
 
-### Senza slot label
+#### Select senza label (🔴 errore intenzionale)
 
 <it-select name="test-select-nolabel" placeholder="Seleziona un'opzione">
   <option value="1">Opzione 1</option>
   <option value="2">Opzione 2</option>
 </it-select>
 
-## Checkbox
+### Checkbox
 
-### Con slot label (controllo)
+#### Checkbox con label (🟢 controllo ok)
 
-<it-checkbox name="test-check">
+<it-checkbox name="test-check-ok">
   <span slot="label">Checkbox di esempio</span>
 </it-checkbox>
 
-### Senza slot label
+#### Checkbox senza label (🔴 errore intenzionale)
 
 <it-checkbox name="test-check-nolabel"></it-checkbox>
 
-## Radio button
+### Radio button
 
-### Con slot label (controllo)
+#### Radio group completo (🟢 controllo ok)
 
-<it-radio-group name="test-radio">
+<it-radio-group name="test-radio-ok">
   <span slot="label">Gruppo radio</span>
   <it-radio id="test-r1" value="opzione1">
     <span slot="label">Radio 1</span>
@@ -173,100 +201,326 @@ quando gli slot dei web component Dev Kit Italia non sono popolati.
   </it-radio>
 </it-radio-group>
 
-### Senza slot label (gruppo e singoli)
+#### Radio group senza label (🔴 errore intenzionale)
 
 <it-radio-group name="test-radio-nolabel">
   <it-radio id="test-r3" value="opzione1"></it-radio>
   <it-radio id="test-r4" value="opzione2"></it-radio>
 </it-radio-group>
 
-## Breadcrumbs
+### Breadcrumbs
 
-### Con item (controllo)
+#### Breadcrumbs completo (🟢 controllo ok)
 
 <it-breadcrumbs it-aria-label="Percorso di navigazione">
   <it-breadcrumb-item><a href="#">Home</a></it-breadcrumb-item>
   <it-breadcrumb-item>Voce corrente</it-breadcrumb-item>
 </it-breadcrumbs>
 
-### Vuoto
+#### Breadcrumbs vuoto (🔴 errore intenzionale)
 
 <it-breadcrumbs it-aria-label="Percorso di navigazione"></it-breadcrumbs>
 
-## Chip
+### Chip
 
-### Con label (controllo)
+#### Chip con label (🟢 controllo ok)
 
 <it-chip label="Test" size="sm" variant="primary"></it-chip>
 
-### Senza label
+#### Chip senza label (🔴 errore intenzionale)
 
 <it-chip size="sm" variant="primary"></it-chip>
 
-## Hero
+### Hero
 
-### Con contenuto (controllo)
+#### Hero con contenuto (🟢 controllo ok)
 
 <it-hero it-aria-label="In evidenza">
   <img slot="background" src="https://placehold.co/1200x400" alt="Immagine hero">
 </it-hero>
 
-### Vuoto
+#### Hero vuoto (🔴 errore intenzionale)
 
 <it-hero></it-hero>
 
-## Card — test dettagliato
+---
 
-### Card completa (controllo)
+## B. Contrasto colori nel shadow DOM
 
-<it-card>
-  <a slot="title" href="#">Titolo card</a>
-  <span slot="text">Testo card di esempio.</span>
-  <time slot="footer" class="it-card-date" datetime="2026-04-10">10 aprile 2026</time>
-</it-card>
+Ogni coppia confronta lo stesso errore di contrasto su un web component e su HTML classico.
+Se il tool segnala entrambi, sta calcolando il contrasto dentro il shadow DOM.
 
-### Card senza slot title (solo text)
+### Card Dev Kit con contrasto 🔴 errato (via style sugli slot)
 
 <it-card>
-  <span slot="text">Solo testo, nessun titolo.</span>
+  <a slot="title" href="#" style="color: #aaaaaa;">Titolo con contrasto insufficiente</a>
+  <span slot="text" style="color: #aaaaaa;">Testo con contrasto insufficiente — grigio chiaro su bianco (#aaa su #fff = ratio 2.32:1).</span>
 </it-card>
 
-### Card senza slot title (text + footer)
+### HTML classico con stesso contrasto 🔴 errato (controllo)
+
+<div class="p-3 border rounded mb-3">
+  <h3><a href="#" style="color: #aaaaaa;">Titolo con contrasto insufficiente</a></h3>
+  <p style="color: #aaaaaa;">Testo con contrasto insufficiente — grigio chiaro su bianco (#aaa su #fff = ratio 2.32:1).</p>
+</div>
+
+### Card Dev Kit con contrasto corretto (🟢 controllo ok)
 
 <it-card>
-  <span slot="text">Testo presente.</span>
-  <time slot="footer" class="it-card-date" datetime="2026-04-10">10 aprile 2026</time>
+  <a slot="title" href="#">Titolo con contrasto corretto</a>
+  <span slot="text">Testo con contrasto corretto — colori default.</span>
 </it-card>
 
-### Card con slot title vuoto (span senza testo)
+### Callout con testo su sfondo colorato
+
+<it-callout variant="warning" heading-level="h3">
+  <it-icon slot="icon" size="md" name="it-warning-circle"></it-icon>
+  <span slot="title">Callout warning</span>
+  <p>Testo su sfondo colorato — il contrasto è verificato dai tool?</p>
+</it-callout>
+
+### Chip varianti colore
+
+<div class="d-flex flex-wrap mb-3" style="gap: .5rem">
+  <it-chip label="Primary" size="sm" variant="primary"></it-chip>
+  <it-chip label="Secondary" size="sm" variant="secondary"></it-chip>
+  <it-chip label="Success" size="sm" variant="success"></it-chip>
+  <it-chip label="Warning" size="sm" variant="warning"></it-chip>
+  <it-chip label="Danger" size="sm" variant="danger"></it-chip>
+</div>
+
+## B. Contrasto colori test con parts
+
+Verifica se i tool calcolano il contrasto sui testi renderizzati nel shadow DOM.
+Il test usa il selettore `::part()` per forzare un colore a basso contrasto
+sugli elementi dentro il shadow DOM dei web component.
+
+<style>
+  .test-bad-contrast it-card::part(text) {
+    color: #aaaaaa;
+  }
+  .test-bad-contrast it-card::part(title) {
+    color: #aaaaaa;
+  }
+  .test-bad-contrast it-button::part(button) {
+    color: #aaaaaa;
+  }
+</style>
+
+### Card Dev Kit con contrasto 🔴 errato (via ::part nel shadow DOM)
+
+<div class="test-bad-contrast">
+<it-card>
+  <a slot="title" href="#">Titolo con contrasto insufficiente</a>
+  <span slot="text">Testo con contrasto insufficiente nel shadow DOM (#aaa su #fff = ratio 2.32:1).</span>
+</it-card>
+</div>
+
+### HTML classico con stesso contrasto 🔴 errato (controllo)
+
+<div class="p-3 border rounded mb-3">
+  <h3><a href="#" style="color: #aaaaaa;">Titolo con contrasto insufficiente</a></h3>
+  <p style="color: #aaaaaa;">Testo con contrasto insufficiente — grigio chiaro su bianco (#aaa su #fff = ratio 2.32:1).</p>
+</div>
+
+### Card Dev Kit con contrasto corretto (🟢 controllo ok)
 
 <it-card>
-  <span slot="title"></span>
-  <span slot="text">Testo presente ma title vuoto.</span>
+  <a slot="title" href="#">Titolo con contrasto corretto</a>
+  <span slot="text">Testo con contrasto corretto — colori default.</span>
 </it-card>
 
-### Card con slot title solo testo (senza link)
+### Button Dev Kit con contrasto 🔴 errato (via ::part nel shadow DOM)
 
-<it-card>
-  <span slot="title">Titolo senza link</span>
-  <span slot="text">Testo card.</span>
-</it-card>
+<div class="test-bad-contrast">
+<it-button variant="primary" type="button">Testo button con contrasto insufficiente</it-button>
+</div>
 
-### Card completamente vuota
+### Button HTML classico con stesso contrasto 🔴 errato (controllo)
 
-<it-card></it-card>
+<button type="button" class="btn btn-primary" style="color: #aaaaaa;">Testo button con contrasto insufficiente</button>
 
-### Card con immagine senza title
+---
 
-<it-card>
-  <figure slot="image" class="figure img-full">
-    <img src="https://placehold.co/400x300" alt="Placeholder">
-  </figure>
-  <span slot="text">Card con immagine ma senza titolo.</span>
-</it-card>
+## C. Form association cross-shadow-root
 
-### Card full-height senza title
+Verifica se un `<form>` nel light DOM riceve i valori degli input nel shadow DOM.
+Compilare i campi e cliccare "Invia" — se il riquadro mostra i dati, la form association funziona.
 
-<it-card full-height="">
-  <span slot="text">Full height senza titolo.</span>
-</it-card>
+### Form Dev Kit dentro form nativo
+
+<form id="test-form" onsubmit="event.preventDefault(); var fd = new FormData(this); var out = ''; for(var p of fd.entries()) out += p[0]+': '+p[1]+'\n'; document.getElementById('form-output').textContent = out || 'Nessun dato ricevuto dal form.';">
+
+  <it-input id="form-input-text" type="text" name="nome" value="">
+    <span slot="label">Nome</span>
+  </it-input>
+
+  <it-input id="form-input-email" type="email" name="email" value="">
+    <span slot="label">Email</span>
+  </it-input>
+
+  <it-select name="ruolo" placeholder="Seleziona ruolo">
+    <span slot="label">Ruolo</span>
+    <option value="dev">Sviluppatore</option>
+    <option value="design">Designer</option>
+    <option value="pm">Project Manager</option>
+  </it-select>
+
+  <it-checkbox name="privacy">
+    <span slot="label">Accetto la privacy policy</span>
+  </it-checkbox>
+
+  <div class="mt-3">
+    <it-button variant="primary" type="submit">Invia form</it-button>
+  </div>
+
+</form>
+
+<pre id="form-output" class="mt-3 p-3 bg-light border">Clicca "Invia form" per verificare i dati ricevuti dal form nativo.</pre>
+
+### Form HTML classico (🟢 controllo)
+
+<form id="test-form-classic" onsubmit="event.preventDefault(); var fd = new FormData(this); var out = ''; for(var p of fd.entries()) out += p[0]+': '+p[1]+'\n'; document.getElementById('form-output-classic').textContent = out || 'Nessun dato ricevuto dal form.';">
+
+  <div class="form-group">
+    <label for="classic-nome">Nome</label>
+    <input type="text" class="form-control" id="classic-nome" name="nome-classic">
+  </div>
+
+  <div class="form-group">
+    <label for="classic-email">Email</label>
+    <input type="email" class="form-control" id="classic-email" name="email-classic">
+  </div>
+
+  <div class="form-check">
+    <input id="classic-privacy" type="checkbox" name="privacy-classic">
+    <label for="classic-privacy">Accetto la privacy policy</label>
+  </div>
+
+  <div class="mt-3">
+    <button type="submit" class="btn btn-primary">Invia form classico</button>
+  </div>
+
+</form>
+
+<pre id="form-output-classic" class="mt-3 p-3 bg-light border">Clicca "Invia form classico" per verificare i dati.</pre>
+
+---
+
+## D. ARIA relationships cross-shadow-root
+
+Per spec WCAG, `aria-describedby` e `aria-labelledby` non funzionano attraverso
+i confini del shadow DOM. Dev Kit usa `it-aria-describedby` e `it-aria-labelledby`
+che il BaseComponent traduce in attributi ARIA.
+
+### Input Dev Kit con aria-describedby che punta a ID esterno (🔴 errore atteso)
+
+<p id="external-description">Questa descrizione è nel light DOM, fuori dal web component.</p>
+
+<it-input id="test-aria-describedby" type="text" name="test-described" it-aria-describedby="external-description">
+  <span slot="label">Campo con aria-describedby esterno</span>
+</it-input>
+
+### Input HTML classico con aria-describedby (🟢 controllo — deve funzionare)
+
+<p id="external-description-classic">Questa descrizione è nel light DOM.</p>
+
+<div class="form-group">
+  <label for="classic-described">Campo con aria-describedby</label>
+  <input type="text" class="form-control" id="classic-described" name="test-described-classic" aria-describedby="external-description-classic">
+</div>
+
+### Input Dev Kit con aria-labelledby che punta a ID esterno (🔴 errore atteso)
+
+<p id="external-label">Etichetta esterna nel light DOM</p>
+
+<it-input id="test-aria-labelledby" type="text" name="test-labelled" it-aria-labelledby="external-label">
+  <span slot="label">Campo con aria-labelledby esterno (dovrebbe usare l'etichetta esterna)</span>
+</it-input>
+
+### Input HTML classico con aria-labelledby (🟢 controllo — deve funzionare)
+
+<p id="external-label-classic">Etichetta esterna nel light DOM</p>
+
+<div class="form-group">
+  <label for="classic-labelled">Campo originale</label>
+  <input type="text" class="form-control" id="classic-labelled" name="test-labelled-classic" aria-labelledby="external-label-classic">
+</div>
+
+---
+
+## E. Focus management
+
+Premere Tab dal primo all'ultimo elemento e verificare l'ordine.
+La sequenza attesa è: 1 → 2 → 3 → 4 → 5 → 6.
+Verificare se ci sono salti, elementi non raggiungibili, o ordine invertito.
+
+<div class="p-3 border mb-3">
+
+  <a href="#" id="focus-start">1. Link nativo (inizio sequenza)</a>
+
+  <it-input id="focus-input" type="text" name="focus-test">
+    <span slot="label">2. Input Dev Kit</span>
+  </it-input>
+
+  <button type="button" class="btn btn-outline-primary my-2">3. Button BSI nativo</button>
+
+  <it-accordion mode="multiple">
+    <it-accordion-item>
+      <span slot="heading">4. Accordion Dev Kit</span>
+      <div slot="content">
+        <a href="#">5. Link dentro accordion</a>
+      </div>
+    </it-accordion-item>
+  </it-accordion>
+
+  <it-button variant="primary" type="button">6. Button Dev Kit (fine sequenza)</it-button>
+
+</div>
+
+---
+
+## F. Modal: focus trap e ARIA
+
+### Modal con focus trap
+
+Aprire la modal, premere Tab ripetutamente.
+Il focus deve ciclare solo tra gli elementi interni della modale.
+Premere Escape — la modal deve chiudersi e il focus tornare sul trigger.
+
+<it-modal
+  close-label="Chiudi finestra modale"
+  modal-title="Test focus trap"
+  modal-description="Verifica che Tab cicli solo tra gli elementi della modale"
+>
+  <it-button variant="primary" slot="trigger">Apri modal focus test</it-button>
+  <span slot="header">Test focus trap</span>
+  <span slot="description">Verifica che Tab cicli solo tra gli elementi della modale</span>
+  <div slot="content">
+    <it-input type="text" name="modal-input">
+      <span slot="label">Campo nella modale</span>
+    </it-input>
+    <a href="#">Link nella modale</a>
+  </div>
+  <it-button slot="footer" variant="outline-primary">Annulla</it-button>
+  <it-button slot="footer" variant="primary">Conferma</it-button>
+</it-modal>
+
+### Modal con form (form association dentro modal)
+
+<it-modal close-label="Chiudi finestra modale">
+  <it-button variant="primary" slot="trigger">Apri modal con form</it-button>
+  <span slot="header">Form nella modale</span>
+  <div slot="content">
+    <it-radio-group name="modal-radio">
+      <span slot="label">Seleziona un'opzione</span>
+      <it-radio id="modal-r1" value="opzione1">
+        <span slot="label">Opzione 1</span>
+      </it-radio>
+      <it-radio id="modal-r2" value="opzione2">
+        <span slot="label">Opzione 2</span>
+      </it-radio>
+    </it-radio-group>
+  </div>
+  <it-button slot="footer" variant="primary">Conferma</it-button>
+</it-modal>
