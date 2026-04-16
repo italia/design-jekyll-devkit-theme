@@ -1,15 +1,12 @@
 ---
 layout: page
-title: "Test accessibilità slot vuoti"
+title: "Test accessibilità"
 nav_order: 99
 ---
 
-Pagina di test per verificare il comportamento dell'accessibility tree
-e dei tool di verifica automatica sui web component Dev Kit Italia.
+Pagina di test per verificare il comportamento dell'accessibility tree e dei tool di verifica automatica sui web component Dev Kit Italia.
 
-Ogni sezione include un **🔴 errore intenzionale** su un web component Dev Kit
-e lo **stesso errore** su HTML classico come controllo.
-Se il tool segnala entrambi, sta verificando dentro il shadow DOM.
+Ogni sezione include un **🔴 errore intenzionale** su un web component Dev Kit e lo **stesso errore** su HTML classico come controllo. Se il tool segnala entrambi, e riconosce anche i casi **🟢 controllo**, è possibile dedurre che stia verificando dentro il shadow DOM, salvo verificare in ogni caso i risultati.
 
 ---
 
@@ -524,3 +521,40 @@ Premere Escape — la modal deve chiudersi e il focus tornare sul trigger.
   </div>
   <it-button slot="footer" variant="primary">Conferma</it-button>
 </it-modal>
+
+---
+
+## G. Gerarchia heading mista light DOM + shadow DOM
+
+Verifica se i tool vedono la gerarchia heading completa
+quando heading nativi e heading nel shadow DOM sono mischiati.
+
+### Gerarchia corretta (🟢 controllo)
+
+<h2>Sezione con heading nativo h2</h2>
+
+<it-card>
+  <a slot="title" href="#">Card con h3 nel shadow DOM — gerarchia corretta</a>
+  <span slot="text">Questa card genera un h3, che segue l'h2 nativo.</span>
+</it-card>
+
+# Gerarchia con salto (🔴 errore intenzionale)
+(test)
+
+<it-card>
+  <a slot="title" href="#">Card con h3 subito dopo h1 — salta h2</a>
+  <span slot="text">Questa card genera un h3 direttamente dopo l'h1 della pagina, saltando h2.</span>
+</it-card>
+
+# Heading nativo dopo heading shadow DOM
+(test)
+
+<it-callout variant="" heading-level="h2">
+  <it-icon slot="icon" size="md" name="it-info-circle"></it-icon>
+  <span slot="title">Callout con h2 nel shadow DOM</span>
+  <p>Il callout genera un h2. Il prossimo heading nativo è un h3 — la gerarchia è corretta?</p>
+</it-callout>
+
+<h3>Heading h3 nativo dopo callout h2 shadow DOM</h3>
+
+<p>I tool vedono la sequenza h2 (shadow DOM) → h3 (nativo) come gerarchia valida?</p>
