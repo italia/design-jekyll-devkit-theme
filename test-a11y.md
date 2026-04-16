@@ -8,11 +8,25 @@ Pagina di test per verificare il comportamento dell'accessibility tree e dei too
 
 ## Contesto e scopo
 
-Questa pagina fa parte di un'analisi esplorativa sulla **verificabilità dell'accessibilità dei web component Dev Kit Italia**. I componenti `<it-*>` usano shadow DOM per incapsulare markup e stili, e slot per ricevere contenuto dal light DOM. Questo approccio funziona bene per screen reader e browser moderni, ma mette in difficoltà diversi tool di verifica automatica.
+Questa pagina fa parte di un'analisi esplorativa sulla **verificabilità dell'accessibilità dei siti che usano Dev Kit Italia**. I componenti `<it-*>` usano shadow DOM per incapsulare markup e stili, e slot per ricevere contenuto dal light DOM. Questo approccio funziona bene con screen reader e browser moderni, ma mette in difficoltà diversi tool di verifica automatica.
 
 La pagina raccoglie casi di test pensati per **forzare errori controllati** e confrontare come diversi tool (axe-core, Siteimprove, ARC Toolkit, WAVE, pa11y, MAUVE++) li rilevano o non li rilevano.
 
-**Gli errori in questa pagina sono intenzionali** — servono a misurare la copertura dei tool, non a suggerire pattern di uso corretto dei componenti.
+**Gli errori in questa pagina sono intenzionali** — servono a misurare la copertura dei tool, non a suggerire pattern d'uso dei componenti.
+
+### Cosa questa pagina non è
+
+Questa pagina **non valuta l'accessibilità di Dev Kit Italia**. I componenti sono stati sviluppati seguendo le migliori pratiche WAI-ARIA e verificati durante lo sviluppo con controlli estesi:
+
+- resa, comportamenti e funzionalità su combinazioni di sistema operativo (Windows, macOS), device (desktop, mobile iOS e Android) e browser (Firefox, Chrome, Edge, Safari)
+- lettori di schermo: VoiceOver, NVDA, JAWS
+- resa senza JavaScript (FOUC)
+- strumenti di verifica automatica (axe, Siteimprove, WAVE)
+- ingrandimento schermo e responsive
+- navigazione da tastiera
+- rispetto delle migliori pratiche WAI-ARIA
+
+L'obiettivo di questa pagina è diverso: **verificare come gli strumenti di verifica automatica rilevano eventuali errori d'uso** quando i componenti vengono applicati in un sito reale (slot non popolati, contrasti forzati, ARIA cross-scope, gerarchie heading miste). Questi errori dipendono da come il dev usa i componenti, non dai componenti stessi.improve, wave), ingrandimento schermo e responsive, navigazione da tastiera e rispetto migliori pratiche wai-aria. 
 
 ## Come leggere la pagina
 
