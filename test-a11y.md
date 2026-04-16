@@ -6,11 +6,36 @@ nav_order: 99
 
 Pagina di test per verificare il comportamento dell'accessibility tree e dei tool di verifica automatica sui web component Dev Kit Italia.
 
+## Contesto e scopo
+
+Questa pagina fa parte di un'analisi esplorativa sulla **verificabilità dell'accessibilità dei web component Dev Kit Italia**. I componenti `<it-*>` usano shadow DOM per incapsulare markup e stili, e slot per ricevere contenuto dal light DOM. Questo approccio funziona bene per screen reader e browser moderni, ma mette in difficoltà diversi tool di verifica automatica.
+
+La pagina raccoglie casi di test pensati per **forzare errori controllati** e confrontare come diversi tool (axe-core, Siteimprove, ARC Toolkit, WAVE, pa11y, MAUVE++) li rilevano o non li rilevano.
+
+**Gli errori in questa pagina sono intenzionali** — servono a misurare la copertura dei tool, non a suggerire pattern di uso corretto dei componenti.
+
+## Come leggere la pagina
+
 Ogni sezione include un **🔴 errore intenzionale** su un web component Dev Kit e lo **stesso errore** su HTML classico come controllo. Se il tool segnala entrambi, e riconosce anche i casi **🟢 controllo**, è possibile dedurre che stia verificando dentro il shadow DOM, salvo verificare in ogni caso i risultati.
+
+Legenda:
+- 🟢 **Controllo OK** — componente corretto, un tool accurato deve passarlo senza segnalazioni
+- 🔴 **Errore intenzionale** — errore controllato, un tool accurato deve segnalarlo
+- 🟡 **Verifica comportamentale** — da osservare manualmente (focus, form submit, screen reader)
+
+## Test con pa11y da CLI
+
+La pagina è direttamente testabile ad esempio con pa11y:
+
+```bashEngine HTML_CodeSniffer (default)
+npx pa11y https://italia.github.io/design-jekyll-devkit-theme/test-a11y/ --standard WCAG2AA --runner axe
+```
 
 ---
 
 ## A. Slot vuoti — elementi semantici fantasma
+
+Quando uno slot obbligatorio non viene popolato, il componente Dev Kit genera comunque l'elemento semantico nel shadow DOM (heading, label, button), producendo un nodo accessibile con nome vuoto. Dev Kit segnala il problema in console ma il DOM non reagisce.
 
 ### Card
 
@@ -244,8 +269,12 @@ Ogni sezione include un **🔴 errore intenzionale** su un web component Dev Kit
 
 ## B. Contrasto colori nel shadow DOM
 
-Ogni coppia confronta lo stesso errore di contrasto su un web component e su HTML classico.
-Se il tool segnala entrambi, sta calcolando il contrasto dentro il shadow DOM.
+Verifica se i tool calcolano il contrasto sui testi renderizzati nel shadow DOM dei componenti, confrontando lo stesso errore applicato in due modi diversi:
+
+- **Via style sugli slot** (light DOM): il tool deve solo leggere lo style inline
+- **Via `::part()`** (shadow DOM): il tool deve attraversare il shadow DOM per calcolare il contrasto
+
+La seconda forma è il vero banco di prova — un tool che non entra nel shadow DOM non può calcolare il contrasto corretto.
 
 ### Card Dev Kit con contrasto 🔴 errato (via style sugli slot)
 
@@ -341,8 +370,9 @@ sugli elementi dentro il shadow DOM dei web component.
 
 ## C. Form association cross-shadow-root
 
-Verifica se un `<form>` nel light DOM riceve i valori degli input nel shadow DOM.
-Compilare i campi e cliccare "Invia" — se il riquadro mostra i dati, la form association funziona.
+Verifica se un `<form>` nel light DOM riceve i valori degli input Dev Kit (che hanno l'`<input>` reale dentro il shadow DOM). Per gli utenti, è la differenza tra "il form funziona" e "il form invia dati vuoti".
+
+Compilare i campi e cliccare "Invia form" — se il riquadro mostra i dati, la form association funziona.
 
 ### Form Dev Kit dentro form nativo
 
@@ -406,9 +436,11 @@ Compilare i campi e cliccare "Invia" — se il riquadro mostra i dati, la form a
 
 ## D. ARIA relationships cross-shadow-root
 
-Per spec WCAG, `aria-describedby` e `aria-labelledby` non funzionano attraverso
-i confini del shadow DOM. Dev Kit usa `it-aria-describedby` e `it-aria-labelledby`
-che il BaseComponent traduce in attributi ARIA.
+Per spec W3C, `aria-describedby` e `aria-labelledby` non funzionano attraverso i confini del shadow DOM: un ID nel light DOM non è risolvibile da un elemento nel shadow DOM.
+
+Dev Kit espone `it-aria-describedby` e `it-aria-labelledby` che vengono applicati all'input generato nel shadow DOM. Il test verifica se il riferimento cross-shadow-root funziona in pratica.
+
+**Risultato atteso**: non funziona (verificato con VoiceOver). Dev Kit fornisce alternative interne (`support-text`, `validity-message`) per i casi d'uso standard.
 
 ### Input Dev Kit con aria-describedby che punta a ID esterno (🔴 errore atteso)
 
@@ -448,9 +480,9 @@ che il BaseComponent traduce in attributi ARIA.
 
 ## E. Focus management
 
-Premere Tab dal primo all'ultimo elemento e verificare l'ordine.
-La sequenza attesa è: 1 → 2 → 3 → 4 → 5 → 6.
-Verificare se ci sono salti, elementi non raggiungibili, o ordine invertito.
+Verifica l'ordine di tabulazione attraverso shadow DOM boundaries.
+
+Posizionarsi sul link "1. Link nativo" e premere Tab ripetutamente. L'ordine atteso è 1→2→3→4→5→6. Shift+Tab per l'ordine inverso.
 
 <div class="p-3 border mb-3">
 
@@ -478,6 +510,10 @@ Verificare se ci sono salti, elementi non raggiungibili, o ordine invertito.
 ---
 
 ## F. Modal: focus trap e ARIA
+
+Verifica che la modal intrappoli il focus e che gli attributi ARIA siano impostati correttamente.
+
+Aprire la modal, premere Tab ripetutamente — il focus deve ciclare solo tra gli elementi interni. Premere Escape — la modal si chiude e il focus torna sul trigger.
 
 ### Modal con focus trap
 
@@ -526,8 +562,10 @@ Premere Escape — la modal deve chiudersi e il focus tornare sul trigger.
 
 ## G. Gerarchia heading mista light DOM + shadow DOM
 
-Verifica se i tool vedono la gerarchia heading completa
-quando heading nativi e heading nel shadow DOM sono mischiati.
+Verifica se i tool vedono la gerarchia heading completa quando heading nativi e heading nel shadow DOM sono mischiati.
+
+**Nota sulla struttura di questa sezione**: contrariamente alle altre, qui usiamo deliberatamente heading di livello non convenzionale (h1 nel corpo della pagina) per costruire i casi di test sulla gerarchia. Gli h1 ripetuti e i salti h1→h3 sono parte del test stesso, non errori di impaginazione della pagina. I tool che calcolano la struttura heading dovrebbero segnalarli.
+
 
 ### Gerarchia corretta (🟢 controllo)
 
@@ -538,7 +576,7 @@ quando heading nativi e heading nel shadow DOM sono mischiati.
   <span slot="text">Questa card genera un h3, che segue l'h2 nativo.</span>
 </it-card>
 
-# Gerarchia con salto (🔴 errore intenzionale)
+# Gerarchia con salto h1 > h3 (🔴 errore intenzionale)
 (test)
 
 <it-card>
