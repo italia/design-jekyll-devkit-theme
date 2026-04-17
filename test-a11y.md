@@ -26,7 +26,7 @@ Questa pagina **non valuta l'accessibilità di Dev Kit Italia**. I componenti so
 - navigazione da tastiera
 - rispetto delle migliori pratiche WAI-ARIA
 
-L'obiettivo di questa pagina è diverso: **verificare come gli strumenti di verifica automatica rilevano eventuali errori d'uso** quando i componenti vengono applicati in un sito reale (slot non popolati, contrasti forzati, ARIA cross-scope, gerarchie heading miste). Questi errori dipendono da come il dev usa i componenti, non dai componenti stessi.improve, wave), ingrandimento schermo e responsive, navigazione da tastiera e rispetto migliori pratiche wai-aria. 
+L'obiettivo di questa pagina è diverso: **verificare come gli strumenti di verifica automatica rilevano eventuali errori d'uso** quando i componenti vengono applicati in un sito reale (slot non popolati, contrasti forzati, ARIA cross-scope, gerarchie heading miste). Questi errori dipendono da come il dev usa i componenti, non dai componenti stessi.
 
 ## Come leggere la pagina
 
