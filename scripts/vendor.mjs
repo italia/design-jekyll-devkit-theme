@@ -17,7 +17,8 @@
  *   assets/vendor/bsi/js/bootstrap-italia.bundle.min.js
  *   assets/vendor/bsi/svg/sprites.svg
  *   assets/vendor/devkit/fonts.css
- *   assets/vendor/devkit/styles.css
+ *   assets/vendor/devkit/styles.css (unused by this theme — see styles-for-migration.css)
+ *   assets/vendor/devkit/styles-for-migration.css (used in _layouts/default.html)
  *   assets/vendor/devkit/elements.js  (+ chunks, fonts, assets)
  */
 
