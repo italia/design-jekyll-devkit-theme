@@ -12,13 +12,12 @@ Questo è un tema Jekyll minimale che usa i **web component di Dev Kit Italia**
 (`<it-*>`) per l'interfaccia, con gli stili di Bootstrap Italia. 
 
 <div class="alert alert-warning mb-5" role="alert">
-  <h4 class="alert-heading">PoC - Alpha</h4>
+  <h4 class="alert-heading">Attenzione</h4>
   <p>Questo tema usa
     <a href="https://github.com/italia/bootstrap-italia" class="alert-link">Bootstrap Italia {{ site.bsi_version }}</a> e
     <a href="https://github.com/italia/dev-kit-italia" class="alert-link">Dev Kit Italia {{ site.devkit_version }}</a>,
   </p>
-  <hr>
-  <p class="mb-0">Componenti e API possono cambiare prima della release stabile. Non usare in produzione senza verificare lo stato upstream.</p>
+  <p class="mb-0">Non usare in produzione senza verificare lo stato upstream.</p>
 </div>
 
 ## Accordion — web component
@@ -54,13 +53,11 @@ senza bisogno di JavaScript custom:
 
 ## Alert — BSI HTML classico
 
-I componenti che non hanno un web component `<it-*>` si usano
-con il markup HTML classico di Bootstrap Italia:
+In questo tema si può usare anche il markup HTML classico di Bootstrap Italia:
 
 <div class="alert alert-warning mb-5" role="alert">
   <it-icon name="it-warning-circle" class="alert-icon"></it-icon>
-  <strong>Nota:</strong> Dev Kit Italia è in fase alpha.
-  Non tutti i componenti BSI hanno un equivalente web component.
+  <strong>Nota:</strong> Dev Kit Italia v1 e Bootstrap Italia v3 sono in fase beta.
 </div>
 
 ## Componenti misti

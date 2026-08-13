@@ -7,7 +7,7 @@
  * Run after `npm install`.
  *
  * Why vendor instead of CDN?
- *   - Dev Kit Italia is alpha — no stable CDN URL guaranteed
+ *   - Dev Kit Italia and BSI 3 are in beta
  *   - The bundle uses ES module imports that need proper resolution
  *   - Self-hosting gives full control over which version is served
  *   - Works with GitHub Pages (static files, no build step beyond Jekyll)
