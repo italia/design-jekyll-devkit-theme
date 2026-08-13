@@ -1,42 +1,48 @@
 {%- assign sprites = site.bsi_sprites | relative_url -%}
 
-<header class="it-header-wrapper">
-  {%- comment -%} ── Slim header ── {%- endcomment -%}
-  <div class="it-header-slim-wrapper">
-    <div class="container-xxl">
-      <div class="row">
-        <div class="col-12">
-          <div class="it-header-slim-wrapper-content">
-            <a class="d-none d-lg-block navbar-brand" href="#">Ente appartenenza</a>
-            <div class="nav-mobile">
-              <nav aria-label="Navigazione secondaria">
-                <a class="it-opener d-lg-none" data-bs-toggle="collapse" href="#slimNav" role="button"
-                  aria-expanded="false" aria-controls="slimNav">
-                  <span>Ente appartenenza</span>
-                  <svg class="icon" aria-hidden="true">
-                    <use href="{{ sprites }}#it-expand"></use>
-                  </svg>
-                </a>
-                <div class="link-list-wrapper collapse" id="slimNav">
-                  <ul class="link-list">
-                    <li><a class="dropdown-item list-item" href="#">Link 1</a></li>
-                    <li><a class="list-item active" href="#" aria-current="page">Link 2 (Attivo)</a></li>
-                  </ul>
+<it-header>
+  <header class="it-header-wrapper">
+    {%- comment -%} ── Slim header ── {%- endcomment -%}
+    <div class="it-header-slim-wrapper">
+      <div class="container-xxl">
+        <div class="row">
+          <div class="col-12">
+            <div class="it-header-slim-wrapper-content">
+              <a class="d-block navbar-brand" href="#">Ente appartenenza</a>
+              <div class="nav-mobile">
+                <nav aria-label="Navigazione accessoria">
+                  <div class="link-list-wrapper d-none d-lg-flex">
+                    <ul class="link-list">
+                      <li>
+                        <a class="dropdown-item list-item" href="#" data-focus-mouse="false">Link 1</a>
+                      </li>
+                      <li>
+                        <a class="list-item active" href="#" aria-current="page">Link 2 (Attivo)</a>
+                      </li>
+                    </ul>
+                  </div>
+                </nav>
+              </div>
+              <div class="it-header-slim-right-zone">
+                <it-dropdown label="ITA" size="sm" alignment="bottom-end"
+                  it-aria-label="Selettore lingua. Lingua attiva: Italiano">
+                  <it-dropdown-item href="#" active="">
+                    <span>ITA
+                      <span class="visually-hidden">selezionata</span></span>
+                  </it-dropdown-item>
+                  <it-dropdown-item href="#">
+                    <span>ENG</span>
+                  </it-dropdown-item>
+                </it-dropdown>
+                <div class="it-access-top-wrapper">
+                  <it-button variant="primary" size="xs">Accedi</it-button>
                 </div>
-              </nav>
-            </div>
-            <div class="it-header-slim-right-zone">
-              <div class="it-access-top-wrapper">
-                <a class="btn btn-primary btn-xs" href="#">Accedi</a>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-
-  <div class="it-nav-wrapper">
     {%- comment -%} ── Header centrale ── {%- endcomment -%}
     <div class="it-header-center-wrapper">
       <div class="container-xxl">
@@ -44,16 +50,13 @@
           <div class="col-12">
             <div class="it-header-center-content-wrapper">
               <div class="it-brand-wrapper">
-                <a href="{{ '/' | relative_url }}">
-                  <svg class="icon" aria-hidden="true">
-                    <use href="{{ sprites }}#it-pa"></use>
-                  </svg>
+                <a href="#">
+                  <it-icon name="it-pa"></it-icon>
                   <div class="it-brand-text">
-                    <div class="it-brand-title">
-                      <span class="d-none d-md-inline">{{ site.title }}</span>
-                      <span class="d-md-none">{{ site.short_title }}</span>
+                    <div class="it-brand-title">Sito di esempio — Dev Kit Italia + Jekyll</div>
+                    <div class="it-brand-tagline d-none d-md-block">
+                      Tema Jekyll minimale con web component Dev Kit Italia e Bootstrap Italia
                     </div>
-                    <div class="it-brand-tagline d-none d-md-block">{{ site.description }}</div>
                   </div>
                 </a>
               </div>
@@ -61,9 +64,7 @@
                 <div class="it-search-wrapper">
                   <span class="d-none d-md-block">Cerca</span>
                   <a class="search-link rounded-icon" aria-label="Cerca nel sito" href="#">
-                    <svg class="icon">
-                      <use href="{{ sprites }}#it-search"></use>
-                    </svg>
+                    <it-icon name="it-search"></it-icon>
                   </a>
                 </div>
               </div>
@@ -72,36 +73,20 @@
         </div>
       </div>
     </div>
-
-    {%- comment -%} ── Header navbar ── {%- endcomment -%}
     <div class="it-header-navbar-wrapper">
       <div class="container-xxl">
         <div class="row">
           <div class="col-12">
+            <!--start nav-->
             <nav class="navbar navbar-expand-lg" aria-label="Navigazione principale">
-              <button class="custom-navbar-toggler" type="button" aria-controls="mainNav"
-                aria-label="Mostra/Nascondi la navigazione" data-bs-toggle="navbarcollapsible"
-                data-bs-target="#mainNav">
-                <svg class="icon">
-                  <use href="{{ sprites }}#it-burger"></use>
-                </svg>
-              </button>
-              <div class="navbar-collapsable" id="mainNav" tabindex="-1">
-                <div class="close-div">
-                  <button class="btn close-menu" type="button">
-                    <span class="visually-hidden">Nascondi la navigazione</span>
-                    <svg class="icon">
-                      <use href="{{ sprites }}#it-close-big"></use>
-                    </svg>
-                  </button>
-                </div>
+              <div class="navbar-collapsable" id="nav1" tabindex="-1">
                 <div class="menu-wrapper">
                   <ul class="navbar-nav">
                     {% assign sorted_pages = site.pages | where_exp: "p", "p.nav_order" | sort: "nav_order" %}
                     {% for p in sorted_pages %}
                     <li class="nav-item{% if page.url == p.url %} active{% endif %}">
                       <a class="nav-link{% if page.url == p.url %} active{% endif %}" href="{{ p.url | relative_url }}"
-                        {% if page.url == p.url %}aria-current="page"{% endif %}>
+                        {% if page.url==p.url %}aria-current="page" {% endif %}>
                         <span>{{ p.nav_title | default: p.title }}</span>
                       </a>
                     </li>
@@ -114,5 +99,5 @@
         </div>
       </div>
     </div>
-  </div>
-</header>
+  </header>
+</it-header>
