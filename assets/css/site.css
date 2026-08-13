@@ -29,7 +29,9 @@
   --bsi-header-nav-text-color: #ffffff;
   --bsi-header-brand-color: #ffffff;
   --bsi-header-brand-icon-color: #ffffff;
-  --bsi-header-search-icon-color: var(--custom-orange-primary);
+  @media (min-width: 992px) {
+   --bsi-header-search-icon-color: var(--custom-orange-primary);
+  }
 }
 
 .navbar {
