@@ -103,7 +103,7 @@ Puoi mischiare web component e HTML classico nella stessa pagina.
       <div class="it-card-image-wrapper">
         <div class="ratio ratio-16x9">
           <figure class="figure img-full">
-            <img src="https://placeholderimage.eu/api/city/800/600" alt="Città">
+            <img src="https://picsum.photos/seed/city/800/600" alt="Città">
           </figure>
         </div>
       </div>
@@ -120,7 +120,7 @@ Puoi mischiare web component e HTML classico nella stessa pagina.
     <it-card>
       <a slot="title" href="#">Card web component con immagine</a>
       <figure slot="image" class="figure img-full">
-        <img src="https://placeholderimage.eu/api/nature/800/600" alt="Natura" />
+        <img src="https://picsum.photos/seed/nature/800/600" alt="Natura" />
       </figure>
       <span slot="text">Web component &lt;it-card&gt; con immagine via slot dedicato.</span>
       <time slot="footer" class="it-card-date" datetime="2026-03-17">17 marzo 2026</time>
@@ -141,7 +141,7 @@ Puoi mischiare web component e HTML classico nella stessa pagina.
       <div class="it-card-image-wrapper">
         <div class="ratio ratio-16x9">
           <figure class="figure img-full">
-            <img src="https://placeholderimage.eu/api/city/800/600" alt="Città">
+            <img src="https://picsum.photos/seed/city/800/600" alt="Città">
           </figure>
         </div>
       </div>
@@ -183,7 +183,7 @@ Puoi mischiare web component e HTML classico nella stessa pagina.
     <it-card full-height="">
       <a slot="title" href="#">Card web component con immagine</a>
       <figure slot="image" class="figure img-full">
-        <img src="https://placeholderimage.eu/api/nature/800/600" alt="Natura" />
+        <img src="https://picsum.photos/seed/nature/800/600" alt="Natura" />
       </figure>
       <span slot="text">Web component <code>&lt;it-card&gt;</code> con immagine via <code>slot="image"</code>.</span>
       <time slot="footer" class="it-card-date" datetime="2026-03-17">17 marzo 2026</time>
@@ -199,7 +199,7 @@ Puoi mischiare web component e HTML classico nella stessa pagina.
       <div class="it-card-image-wrapper">
         <div class="ratio ratio-16x9">
           <figure class="figure img-full">
-            <img src="https://placeholderimage.eu/api/architecture/800/600" alt="Architettura">
+            <img src="https://picsum.photos/seed/architecture/800/600" alt="Architettura">
           </figure>
         </div>
       </div>
