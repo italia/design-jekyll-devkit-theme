@@ -29,8 +29,9 @@
   --bsi-header-nav-text-color: #ffffff;
   --bsi-header-brand-color: #ffffff;
   --bsi-header-brand-icon-color: #ffffff;
+
   @media (min-width: 992px) {
-   --bsi-header-search-icon-color: var(--custom-orange-primary);
+    --bsi-header-search-icon-color: var(--custom-orange-primary);
   }
 }
 
@@ -64,51 +65,41 @@ main article>*:first-child {
 /* ── Typography & spacing ──────────────────────────────────────────────────── */
 
 
-p {
-  max-width: 75ch;
-}
+main {
+  p, ul, li, dl, dt, dd, h2, h3, h4, h5, h6 {
+    max-width: 75ch;
+  }
 
-it-video,
-it-breadcrumbs,
-it-accordion,
-it-hero,
-it-input {
-  display: block;
-  margin-bottom: 2.5rem;
-}
+  it-video,
+  it-breadcrumbs,
+  it-accordion,
+  it-hero,
+  it-input {
+    display: block;
+    margin-bottom: 2.5rem;
+  }
 
-h2 {
-  margin-top: 4.5rem;
-}
+  h2 {
+    margin-top: 4.5rem;
+  }
 
-h3 {
-  margin-top: 1rem;
-}
+  h3 {
+    margin-top: 1rem;
+  }
 
-h4 {
-  margin-top: 0.875rem;
-}
+  h4 {
+    margin-top: 0.875rem;
+  }
 
-hr {
-  margin-top: 4.5rem!important;
-  border-top: dotted 4px #666!important;
-}
+  hr {
+    margin-top: 4.5rem !important;
+    border-top: dotted 4px #666 !important;
+  }
 
+}
 
 /* Restore BSI 85% for inline code — overridden to 1em by styles.css Dev Kit. 
    Is it a Dev Kit style issue? */
 :not(pre)>code {
   font-size: 0.875em;
-}
-
-/* ––– Temporary –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
-
-
-/* Issue BSI 3: https://github.com/italia/bootstrap-italia/issues/1726 */
-ul.it-card-list li .it-card-text {
-  font-size: 1rem !important;
-}
-
-ul.it-card-list li it-card {
-  font-size: 1rem;
 }
