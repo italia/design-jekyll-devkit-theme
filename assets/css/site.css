@@ -66,8 +66,12 @@ main article>*:first-child {
 
 
 main {
-  p, ul, li, dl, dt, dd, h2, h3, h4, h5, h6 {
+  p, li, dl, dt, dd, h2, h3, h4, h5, h6 {
     max-width: 75ch;
+  }
+
+  ul.it-card-list li {
+    max-width: inherit;
   }
 
   it-video,
