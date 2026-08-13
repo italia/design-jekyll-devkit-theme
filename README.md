@@ -1,9 +1,8 @@
 # Jekyll + Dev Kit Italia — Skeleton Theme
 
-> ⚠️ **Proof of concept** — Dev Kit Italia e Bootstrap Italia v3 sono in alpha.
-> Non usare in produzione senza verificare lo stato upstream. Componenti e API possono cambiare prima della release stabile.
+> ⚠️ Dev Kit Italia v1 e Bootstrap Italia v3 sono in beta. Non usare in produzione senza verificare lo stato upstream.
 
-Tema Jekyll minimale che usa i **web component di Dev Kit Italia** (`<it-*>`) con gli stili di **Bootstrap Italia**.
+Tema Jekyll minimale che usa i **web component di Dev Kit Italia** (`<it-*>`) e gli stili di **Bootstrap Italia**.
 
 ## Come funziona
 
@@ -18,7 +17,7 @@ Jekyll (static HTML) + Dev Kit Italia (web components via ES modules)
 
 **Nessun bundler, nessun build JS.** Solo file statici serviti da Jekyll.
 
-**Nota bene: In questo primo PoC carica CSS + JS anche di Bootstrap Italia.**
+**Nota bene: il tema carica il CSS `styles-for-migration.css` del bundle Dev Kit Italia e il JS di Bootstrap Italia per permettere di poter usare in pagina anche i "comuni" markup dei componenti di Bootstrap Italia ([approfondisci](https://italia.github.io/dev-kit-italia/?path=/docs/migrazione--documentazione).**
 
 ## Setup
 
@@ -93,7 +92,5 @@ attivati dal browser quando `elements.js` si carica.
 
 **Limitazioni:**
 - SSR: i web component renderizzano client-side (FOUC possibile)
-- Non tutti i ~55 componenti BSI hanno un equivalente `<it-*>`
-- Dev Kit Italia è alpha — breaking changes possibili
 - `elements.js` carica TUTTI i componenti (no tree-shaking in questo PoC)
 - GitHub Pages: servire `assets/vendor/` richiede di committare i file
